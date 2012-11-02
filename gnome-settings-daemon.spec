@@ -1,7 +1,7 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
 Version:	3.6.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
@@ -36,7 +36,7 @@ Requires(post,postun):	glib-gio-gsettings
 Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_libexecdir	%{_libdir}/%{name}
+%define		_libexecdir	%{_libdir}/%{name}-3.0
 
 %description
 GNOME Settings Daemon.
@@ -92,13 +92,14 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README
-%attr(755,root,root) %{_libdir}/gnome-settings-daemon
+%dir %{_libexecdir}
+%dir %{_libexecdir}/gtk-modules
+%attr(755,root,root) %{_libexecdir}/*.so
+%attr(755,root,root) %{_libexecdir}/gnome-*
+%attr(755,root,root) %{_libexecdir}/gnome-settings-daemon
+%attr(755,root,root) %{_libexecdir}/gsd-*
+%{_libexecdir}/*-plugin
 
-%dir %{_libdir}/gnome-settings-daemon-3.0
-%dir %{_libdir}/gnome-settings-daemon-3.0/gtk-modules
-
-%attr(755,root,root) %{_libdir}/gnome-settings-daemon-3.0/*.so
-%{_libdir}/gnome-settings-daemon-3.0/*-plugin
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/gnome-settings-daemon
 %{_datadir}/polkit-1/actions/org.gnome.settings-daemon.plugins.power.policy

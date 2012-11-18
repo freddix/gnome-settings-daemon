@@ -1,12 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.6.2
+Version:	3.6.3
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	4e5ccfc525cbc6130d171a3705e6d865
+# Source0-md5:	1736e7305439b027cc7c2de2899ded69
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake

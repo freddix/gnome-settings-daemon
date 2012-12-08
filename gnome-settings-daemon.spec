@@ -1,12 +1,13 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
 Version:	3.6.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.6/%{name}-%{version}.tar.xz
 # Source0-md5:	1736e7305439b027cc7c2de2899ded69
+Patch0:		%{name}-bug680689.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,6 +51,7 @@ Header file for developing GNOME Settings Daemon clients.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__glib_gettextize}
@@ -91,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README
+%doc AUTHORS ChangeLog MAINTAINERS NEWS README plugins/common/input-device-example.sh
 %dir %{_libexecdir}
 %dir %{_libexecdir}/gtk-modules
 %attr(755,root,root) %{_libexecdir}/*.so

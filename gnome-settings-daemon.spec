@@ -1,7 +1,7 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
 Version:	3.6.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
@@ -53,6 +53,10 @@ Header file for developing GNOME Settings Daemon clients.
 %setup -q
 %patch0 -p1
 
+# packagekit not used (yet)
+%{__sed} -i '/<child name="updates".*/d' \
+	data/org.gnome.settings-daemon.plugins.gschema.xml.in.in
+
 %build
 %{__glib_gettextize}
 %{__intltoolize}
@@ -63,6 +67,7 @@ Header file for developing GNOME Settings Daemon clients.
 %{__automake}
 %configure \
 	--disable-ibus		\
+	--disable-packagekit	\
 	--disable-silent-rules	\
 	--disable-static	\
 	--enable-systemd

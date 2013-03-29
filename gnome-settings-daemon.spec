@@ -1,13 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.6.4
+Version:	3.8.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	362803ee1f1a0aa02e3c7df61ef82309
-Patch0:		%{name}-bug680689.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	e2a3a635088f896496c84733a0a7a605
 Patch1:		%{name}-freddix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -36,6 +35,7 @@ BuildRequires:	xorg-libxkbfile-devel
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	glib-gio-gsettings
 Requires(post,postun):	hicolor-icon-theme
+Requires:	pulseaudio
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/%{name}-3.0
@@ -52,7 +52,6 @@ Header file for developing GNOME Settings Daemon clients.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 
 # packagekit not used (yet)
@@ -113,7 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome-settings-daemon
 %{_datadir}/polkit-1/actions/org.gnome.settings-daemon.plugins.power.policy
 %{_datadir}/polkit-1/actions/org.gnome.settings-daemon.plugins.wacom.policy
-%{_sysconfdir}/xdg/autostart/gnome-fallback-mount-helper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon.desktop
 %{_iconsdir}/hicolor/*/*/*.*
 %{_mandir}/man1/gnome-settings-daemon.1*

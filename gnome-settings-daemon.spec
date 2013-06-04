@@ -1,12 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.8.0
+Version:	3.8.2
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	e2a3a635088f896496c84733a0a7a605
+# Source0-md5:	ff98007a9e4949b75cedecd1c50a1197
 Patch1:		%{name}-freddix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf

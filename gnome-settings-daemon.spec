@@ -1,12 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.8.5
+Version:	3.10.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	d1571decc672a224e415713ee57c2c3d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	862cfdedc0f4ad45d2919a27581c259b
 Patch1:		%{name}-freddix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -14,8 +14,10 @@ BuildRequires:	automake
 BuildRequires:	colord-devel
 BuildRequires:	cups-devel
 BuildRequires:	dbus-glib-devel
+BuildRequires:	geoclue2-devel
+BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel
+BuildRequires:	gnome-desktop-devel >= 3.10.0
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	intltool
 BuildRequires:	lcms2-devel

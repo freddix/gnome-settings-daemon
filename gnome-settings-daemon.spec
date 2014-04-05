@@ -1,12 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.10.2
+Version:	3.12.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	b8afefcf332cde38ef04621a73bcd042
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	8b271a1cb80d60809f6c0f51b47e2e1a
 Patch1:		%{name}-freddix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -14,10 +14,10 @@ BuildRequires:	automake
 BuildRequires:	colord-devel
 BuildRequires:	cups-devel
 BuildRequires:	dbus-glib-devel
-BuildRequires:	geoclue2-devel
+BuildRequires:	geoclue2-devel >= 2.1.2
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 3.10.0
+BuildRequires:	gnome-desktop-devel >= 3.12.0
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	intltool
 BuildRequires:	lcms2-devel
@@ -30,7 +30,7 @@ BuildRequires:	pkg-config
 BuildRequires:	pulseaudio-devel
 BuildRequires:	systemd-devel
 BuildRequires:	udev-glib-devel
-BuildRequires:	upower-devel
+BuildRequires:	upower-devel >= 0.99.0
 BuildRequires:	xorg-driver-input-wacom-devel
 BuildRequires:	xorg-libXxf86misc-devel
 BuildRequires:	xorg-libxkbfile-devel
@@ -38,6 +38,7 @@ Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	glib-gio-gsettings
 Requires(post,postun):	hicolor-icon-theme
 Requires:	pulseaudio
+Requires:	upower >= 0.99.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/%{name}-3.0

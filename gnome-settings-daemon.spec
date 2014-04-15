@@ -1,7 +1,7 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
 Version:	3.12.0.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications

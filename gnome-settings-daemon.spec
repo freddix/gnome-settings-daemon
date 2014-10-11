@@ -1,12 +1,12 @@
 Summary:	GNOME Settings Daemon
 Name:		gnome-settings-daemon
-Version:	3.12.2
+Version:	3.14.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	63b053c499e73e522b316c54224b22dc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-settings-daemon/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	12e84a4fcc315d3bd6d3d373828fe0c2
 Patch1:		%{name}-freddix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -17,7 +17,7 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	geoclue2-devel >= 2.1.2
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 3.12.0
+BuildRequires:	gnome-desktop-devel >= 3.14.0
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	intltool
 BuildRequires:	lcms2-devel
@@ -26,11 +26,12 @@ BuildRequires:	libnotify-devel
 BuildRequires:	libtool
 BuildRequires:	libwacom-devel
 BuildRequires:	libxklavier-devel
+BuildRequires:	nss-devel
 BuildRequires:	pkg-config
 BuildRequires:	pulseaudio-devel
 BuildRequires:	systemd-devel
 BuildRequires:	udev-glib-devel
-BuildRequires:	upower-devel >= 0.99.0
+BuildRequires:	upower-devel >= 0.99.1
 BuildRequires:	xorg-driver-input-wacom-devel
 BuildRequires:	xorg-libXxf86misc-devel
 BuildRequires:	xorg-libxkbfile-devel
@@ -38,7 +39,7 @@ Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	glib-gio-gsettings
 Requires(post,postun):	hicolor-icon-theme
 Requires:	pulseaudio
-Requires:	upower >= 0.99.0
+Requires:	upower >= 0.99.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/%{name}-3.0
@@ -70,11 +71,8 @@ Header file for developing GNOME Settings Daemon clients.
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-ibus		\
-	--disable-packagekit	\
 	--disable-silent-rules	\
-	--disable-static	\
-	--enable-systemd
+	--disable-static
 %{__make}
 
 %install
@@ -84,8 +82,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/gnome-settings-daemon-3.0/gtk-modules
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-settings-daemon-3.0/*.la
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw,ha,ig,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-settings-daemon-3.0/*.la
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/GConf
 
 %find_lang %{name}
 
@@ -110,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/gnome-settings-daemon
 %attr(755,root,root) %{_libexecdir}/gsd-*
 %{_libexecdir}/*-plugin
+%{_prefix}/lib/udev/rules.d/61-gnome-settings-daemon-rfkill.rules
 
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/gnome-settings-daemon
